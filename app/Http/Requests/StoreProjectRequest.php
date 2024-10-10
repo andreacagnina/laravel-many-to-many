@@ -30,6 +30,7 @@ class StoreProjectRequest extends FormRequest
             'end_date' => 'nullable|date|after_or_equal:start_date',
             'cover_project_image' => 'image|max:4084',
             'type_id' => 'nullable|exists:types,id',
+            'technology' => 'array|exists:technology,id'
         ];
     }
     public function messages()
@@ -44,6 +45,8 @@ class StoreProjectRequest extends FormRequest
             'cover_project_image.image' => 'Il file deve essere un file immagine',
             'cover_project_image.max' => 'Il file non deve superare i 4 MB',
             'type_id.exists' => 'Questa categoria non esiste',
+            'technology.array' => 'Deve essere un array',
+            'technology.exists' => 'Questa voce non esiste',
         ];
     }
 }
