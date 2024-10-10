@@ -14,22 +14,29 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() === 'homepage' ? 'fw-bold' : '' }}"
-                            href="{{ url('/') }}">{{ __('Home') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() === 'admin.projects.index' ? 'fw-bold' : '' }}"
-                            href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() === 'admin.types.index' ? 'fw-bold' : '' }}"
-                            href="{{ route('admin.types.index') }}">{{ __('Types') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() === 'admin.technologies.index' ? 'fw-bold' : '' }}"
-                            href="{{ route('admin.technologies.index') }}">{{ __('Technologies') }}</a>
-                    </li>
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() === 'homepage' ? 'fw-bold' : '' }}"
+                                href="{{ url('/') }}">{{ __('Home') }}</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() === 'homepage' ? 'fw-bold' : '' }}"
+                                href="{{ url('/') }}">{{ __('Home') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() === 'admin.projects.index' ? 'fw-bold' : '' }}"
+                                href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() === 'admin.types.index' ? 'fw-bold' : '' }}"
+                                href="{{ route('admin.types.index') }}">{{ __('Types') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() === 'admin.technologies.index' ? 'fw-bold' : '' }}"
+                                href="{{ route('admin.technologies.index') }}">{{ __('Technologies') }}</a>
+                        </li>
+                    @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
