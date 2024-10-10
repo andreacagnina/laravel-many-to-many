@@ -54,7 +54,7 @@ class ProjectController extends Controller
         if ($request->hasFile('cover_project_image')) {
             $form_data['cover_project_image'] = Storage::put('cover_project_image', $form_data['cover_project_image']);
         } else {
-            $form_data['cover_project_image'] = 'https://placehold.co/600x400?text=Project+Image';
+            $form_data['cover_project_image'] = 'https://picsum.photos/600/400';
         }
 
         $project = Project::create($form_data);
@@ -88,7 +88,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view("admin.projects.edit", compact("project", 'types'));
+        $technologies = Technology::all();
+        return view("admin.projects.edit", compact("project", 'types', 'technologies'));
     }
 
     /**
@@ -113,6 +114,13 @@ class ProjectController extends Controller
         }
 
         $project->update($form_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        } else {
+            $project->technologies()->sync([]);
+        }
+
         return redirect()->route('admin.projects.show', ['project' => $project->id])->with("success", "Progetto Modificato");
     }
 

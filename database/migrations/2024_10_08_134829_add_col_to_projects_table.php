@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('cover_project_image')->default('https://placehold.co/600x400?text=Project+Image');
+            $table->string('cover_project_image')->default('https://picsum.photos/600/400');
         });
     }
 

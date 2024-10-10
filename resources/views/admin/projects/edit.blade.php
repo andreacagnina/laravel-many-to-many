@@ -45,10 +45,12 @@
                                 <div class="mx-2 d-inline">
                                     @if ($errors->any())
                                         <input type="checkbox" name="technologies[]" id="technologies"
-                                            value="{{ $technology->id }}" @checked(is_array(old('projects')) && in_array($technology->id, old('projects')))>
+                                            value="{{ $technology->id }}"
+                                            {{ in_array($technology->id, old('technologies')) ? 'checked' : '' }}>
                                     @else
                                         <input type="checkbox" name="technologies[]" id="technologies"
-                                            value="{{ $technology->id }}" @checked($project->technologies->contains($project->id))>>
+                                            value="{{ $technology->id }}"
+                                            {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
                                     @endif
                                     <label for="technologies" class="form-label">{{ $technology->name }}</label>
                                 </div>
