@@ -25,6 +25,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Slug</th>
+                            <th>Descrizione</th>
                             <th class="text-center">Tools</th>
                         </tr>
                     </thead>
@@ -33,13 +34,15 @@
                             <tr>
                                 <td>{{ $technology->name }}</td>
                                 <td>{{ $technology->slug }}</td>
+                                <td>{{ $technology->description }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a class="btn btn-outline-warning mx-1"
                                             href="{{ route('admin.technologies.edit', ['technology' => $technology->id]) }}"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
                                         </a>
-                                        <form action="{{ route('admin.technologies.destroy', ['technology' => $technology->id]) }}"
+                                        <form
+                                            action="{{ route('admin.technologies.destroy', ['technology' => $technology->id]) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')
