@@ -20,7 +20,7 @@
         @endif
         <div class="row center">
             <div class="col-12">
-                <table class="table">
+                <table class="table table-bordered align-middle table-sm mt-3">
                     <thead>
                         <tr>
                             <th>Nome</th>

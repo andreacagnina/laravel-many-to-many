@@ -38,13 +38,13 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <table class="table">
+                    <table class="table table-bordered align-middle table-sm mt-3">
                         <thead>
                             <tr>
                                 <th>Nome</th>
+                                <th>Slug</th>
                                 <th>Categoria</th>
                                 <th>Descrizione</th>
-                                <th>Slug</th>
                                 <th>Inizio</th>
                                 <th>Fine</th>
                                 <th>Tools</th>
@@ -54,9 +54,9 @@
                             @foreach ($projects as $project)
                                 <tr>
                                     <td>{{ $project->name }}</td>
+                                    <td>{{ $project->slug }}</td>
                                     <th>{{ $project->type->name ?? 'NC' }}</th>
                                     <td>{{ $project->description }}</td>
-                                    <td>{{ $project->slug }}</td>
                                     <td>{{ $project->start_date }}</td>
                                     <td>{{ $project->end_date }}</td>
                                     <td>
