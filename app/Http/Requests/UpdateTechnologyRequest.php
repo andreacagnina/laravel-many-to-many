@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTechnologyRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,17 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', Rule::unique('types')->ignore($this->type), 'max:150'],
+            'description' => ['nullable', 'max:500'],
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Titolo obbligatorio',
+            'name.unique' => 'Questo titolo esiste già',
+            'name.max' => 'Superato il numero massimo di caratteri (150)',
+            'description.max' => 'Superato il numero massimo di caratteri (500)',
         ];
     }
 }

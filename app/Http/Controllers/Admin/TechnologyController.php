@@ -17,7 +17,8 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+        $technologies = Technology::all();
+        return view("admin.technologies.index", compact("technologies"));
     }
 
     /**
@@ -27,7 +28,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.technologies.create");
     }
 
     /**
@@ -38,7 +39,11 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        $form_data = $request->validated();
+        $form_data['slug'] = Technology::generateSlug($form_data['name']);
+
+        Technology::create($form_data);
+        return redirect()->route('admin.technologies.index')->with('success', 'Categoria Creata');
     }
 
     /**
@@ -60,7 +65,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        return view('admin.technologies.edit', compact('type'));
     }
 
     /**
@@ -72,7 +77,10 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $form_data = $request->validated();
+        $form_data['slug'] = Technology::generateSlug($form_data['name']);
+        $technology->update($form_data);
+        return redirect()->route('admin.technologies.index', ['technology' => $technology->id])->with("success", "Categoria Modificata");
     }
 
     /**
@@ -83,6 +91,7 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        return redirect()->route("admin.technologies.index")->with("success", "Categoria Cancellata");
     }
 }

@@ -66,3 +66,28 @@ delete_type_buttons.forEach((button) => {
     }
     );
 });
+
+const delete_Tech_buttons = document.querySelectorAll('.TechDelete');
+
+delete_Tech_buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const modal = document.getElementById('deleteTechModal');
+
+        const bootstrap_modal = new bootstrap.Modal(modal);
+        bootstrap_modal.show();
+
+        const buttonDelete = modal.querySelector('.confirm-delete');
+
+        const TechName = button.getAttribute('data-TechName');
+
+        const ModalText = modal.querySelector('#modal_text');
+        ModalText.innerHTML = `Sei sicuro di volere cancellare questo progetto?<br><strong>${TechName}</strong>`;
+
+        buttonDelete.addEventListener('click', function () {
+            button.parentElement.submit();
+        })
+    }
+    );
+});

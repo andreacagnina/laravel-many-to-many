@@ -32,7 +32,7 @@ class UpdateProjectRequest extends FormRequest
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'cover_project_image' => ['image', 'max:4084'],
             'type_id' => ['nullable', Rule::exists('types', 'id')],
-            'technology' => ['array', Rule::exists('technologies', 'id')],
+            'technologies' => ['array', Rule::exists('technologies', 'id')],
         ];
     }
     public function messages()
@@ -46,8 +46,8 @@ class UpdateProjectRequest extends FormRequest
             'end_date.required' => 'Data obbligatoria',
             'cover_project_image.max' => 'Il file non deve superare i 4 MB',
             'type_id.exists' => 'Questa categoria non esiste',
-            'technology.array' => 'Deve essere un array',
-            'technology.exists' => 'Questa voce non esiste',
+            'technologies.array' => 'Deve essere un array',
+            'technologies.exists' => 'Questa voce non esiste',
         ];
     }
 }
