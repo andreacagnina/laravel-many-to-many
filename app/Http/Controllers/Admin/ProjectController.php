@@ -57,7 +57,12 @@ class ProjectController extends Controller
             $form_data['cover_project_image'] = 'https://placehold.co/600x400?text=Project+Image';
         }
 
-        Project::create($form_data);
+        $project = Project::create($form_data);
+
+        if ($request->has('technologies')) {
+            $technologies = $request->technologies;
+            $project->technologies()->attach($technologies);
+        }
 
         return redirect()->route('admin.projects.index')->with("success", "Progetto Creato");
     }
@@ -70,7 +75,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view("admin.projects.show", compact("project"));
+        $technologies = Technology::all();
+        return view("admin.projects.show", compact("project", 'technologies'));
     }
 
     /**

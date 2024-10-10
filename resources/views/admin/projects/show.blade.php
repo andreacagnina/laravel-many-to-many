@@ -32,6 +32,7 @@
                             <thead>
                                 <tr>
                                     <th>Categoria</th>
+                                    <th>Technology</th>
                                     <th>Nome</th>
                                     <th>Descrizione</th>
                                     <th>Slug</th>
@@ -44,6 +45,13 @@
                             <tbody>
                                 <tr>
                                     <th>{{ $project->type->name ?? 'NC' }}</th>
+                                    <td>
+                                        @forelse($project->technologies as $technology)
+                                            {{ $technology->name }}
+                                        @empty
+                                            <strong>NC</strong>
+                                        @endforelse
+                                    </td>
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->description }}</td>
                                     <td>{{ $project->slug }}</td>

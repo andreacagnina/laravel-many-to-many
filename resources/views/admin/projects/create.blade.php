@@ -46,9 +46,6 @@
                                     <label for="technologies" class="form-label">{{ $technology->name }}</label>
                                 </div>
                             @endforeach
-                            @error('technologies')
-                                <div class="text-danger fs-6 small">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                     <div class="row">
