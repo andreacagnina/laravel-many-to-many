@@ -39,6 +39,20 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
+                            @foreach ($technologies as $technology)
+                                <div class="mx-2 d-inline">
+                                    <input type="checkbox" name="technologies[]" id="technologies"
+                                        value="{{ $technology->id }}" @checked(is_array(old('technologies')) && in_array($technology->id, old('technologies')))>
+                                    <label for="technologies" class="form-label">{{ $technology->name }}</label>
+                                </div>
+                            @endforeach
+                            @error('technologies')
+                                <div class="text-danger fs-6 small">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <label for="description" class="form-label">Descrizione:</label>
                             <textarea name="description" id="description-project" cols="30" rows="5"
                                 class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
